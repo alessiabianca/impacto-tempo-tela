@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Vida Digital</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 40px; background-color: #f0f2f5; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
+        h1 { color: #1a73e8; }
+        input { padding: 12px; width: 80%; margin: 20px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 1.1em; text-align: center; }
+        button { background-color: #1a73e8; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; font-weight: bold; width: 100%; }
+        button:hover { background-color: #1557b0; }
+        #resultado { margin-top: 30px; text-align: left; line-height: 1.6; font-size: 1.1em; display: none; padding: 15px; border-left: 5px solid #1a73e8; background: #f8f9fa; }
+        .destaque { color: #d93025; font-weight: bold; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quanto da sua vida você passa online? 📱</h1>
+        <p>Insira a média de horas que você usa o celular por dia:</p>
+        <input type="number" id="horas" placeholder="Ex: 6" min="1" max="24">
+        <button onclick="calcular()">CALCULAR IMPACTO</button>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            let h = document.getElementById('horas').value;
+            if(!h || h <= 0) { alert("Por favor, insira um valor."); return; }
+
+            let horasAno = h * 365;
+            let diasAno = Math.round(horasAno / 24);
+            let anosVida = ((diasAno * 75) / 365).toFixed(1);
+
+            document.getElementById('resultado').style.display = 'block';
+            document.getElementById('resultado').innerHTML = `
+                • Em um ano, você acumula <span class='destaque'>${horasAno} horas</span> de tela.<br>
+                • Isso significa <span class='destaque'>${diasAno} dias inteiros</span> por ano sem largar o aparelho.<br><br>
+                • <b>EM UMA VIDA (75 anos):</b><br>
+                Você passará cerca de <span class='destaque'>${anosVida} ANOS</span> olhando para uma tela! 🤯
+            `;
+        }
+    </script>
+</body>
+</html>
